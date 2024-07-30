@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './FlightStatus.css';
 
 const FlightStatus = ({ token }) => {
   const [flights, setFlights] = useState([]);
@@ -16,11 +17,17 @@ const FlightStatus = ({ token }) => {
   }, [token]);
 
   return (
-    <div>
+    <div className="flight-status-container">
       <h1>Flight Status</h1>
-      <ul>
+      <ul className="flight-list">
         {flights.map(flight => (
-          <li key={flight.id}>{flight.status}</li>
+          <li key={flight.id} className="flight-item">
+            <div className="flight-details">
+              <span>Flight Number: {flight.flightNumber}</span>
+              <span>Status: {flight.status}</span>
+              <span>Gate: {flight.gate}</span>
+            </div>
+          </li>
         ))}
       </ul>
     </div>
